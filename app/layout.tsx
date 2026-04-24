@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import {  Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Header from "@/components/layout/Header";
+import ContextProvider from "@/context/Context";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "NeFET",
@@ -20,7 +22,12 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", "font-sans", inter.variable)}
     >
-      <body className="bg-background">{children}</body>
+      <body className="bg-background">
+        <ContextProvider>
+          <Header />
+        </ContextProvider>
+        {children}
+      </body>
     </html>
   );
 }
