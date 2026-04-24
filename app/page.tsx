@@ -1,6 +1,7 @@
 import Featured from "@/components/home/Featured";
 import Features from "@/components/home/Features";
 import Hero from "@/components/home/Hero";
+import Stats from "@/components/home/Stats";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <Featured />
       <Features />
+      <Stats />
     </>
   );
 }
