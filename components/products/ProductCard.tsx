@@ -30,7 +30,7 @@ const ProductCard = ({ item }: { item: NftItem }) => {
         <p className="mt-2 text-sm text-muted line-clamp-2 flex-1">
           {item.shortDescription}
         </p>
-        <div className="mt-4 flex items-baseline justify-between">
+        <div className="mt-4 flex items-center justify-between">
           <div>
             <div className="text-xs text-muted">Price</div>
             <div className="font-display font-bold text-primary-text">{item.price} ETH</div>
