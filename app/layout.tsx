@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "@/components/layout/Header";
 import ContextProvider from "@/context/Context";
+import Footer from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -25,8 +26,9 @@ export default function RootLayout({
       <body className="bg-background">
         <ContextProvider>
           <Header />
+          {children}
+          <Footer />
         </ContextProvider>
-        {children}
       </body>
     </html>
   );
