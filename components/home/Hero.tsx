@@ -32,7 +32,7 @@ const Hero = () => {
           size="lg"
           variant="outline"
           asChild
-          className="w-full sm:w-auto text-secondary-text hover:bg-transparent hover:text-secondary-text"
+          className="w-full sm:w-auto text-primary-text hover:bg-transparent hover:text-primary-text"
         >
           <Link href="/register">Start Creating</Link>
         </Button>
