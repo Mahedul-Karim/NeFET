@@ -5,20 +5,42 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-// import { toast } from "sonner";
+import { toast } from "sonner";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
+import { useCtx } from "@/context/Context";
 
 const LoginForm = () => {
+  const { setUser } = useCtx();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   const onSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {
-      //   toast.success("Welcome back!");
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+
+      const userData = {
+        name: userCredential.user.displayName,
+        email: userCredential.user.email,
+      };
+
+      setUser(userData);
+
+      toast.success("Welcome back!");
+      router.push("/")
     } catch {
-      //   toast.error("Login failed");
+      toast.error("Login failed");
     } finally {
       setLoading(false);
     }
