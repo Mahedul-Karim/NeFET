@@ -46,7 +46,7 @@ const AddItemForm = () => {
       rarity,
       image:
         image ||
-        "",
+        "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?auto=format&fit=crop&w=800&h=800",
       creator: user?.name,
       createdAt:new Date()
     };

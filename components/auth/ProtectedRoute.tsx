@@ -10,20 +10,20 @@ interface Props {
 }
 
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
-  const { user} = useCtx();
+  const { isLoggedIn} = useCtx();
 
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) {
+    if (!isLoggedIn) {
       router.replace("/login");
       toast.success("Please login to access this page");
       return; 
     }
 
-  }, []);
+  }, [isLoggedIn]);
 
-  if(!user) {
+  if(!isLoggedIn) {
     return <></>
   }
 

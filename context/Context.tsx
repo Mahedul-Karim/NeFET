@@ -23,6 +23,8 @@ interface ContextType {
   setUser: Dispatch<SetStateAction<User | null >>;
   items: NftItem[];
   setItems: Dispatch<SetStateAction<any>>;
+  isLoggedIn:boolean;
+  setIsLoggedIn:Dispatch<SetStateAction<boolean>>;
 }
 
 const Context = createContext<ContextType>({
@@ -30,12 +32,15 @@ const Context = createContext<ContextType>({
   setUser: () => {},
   items: [],
   setItems: () => {},
+  isLoggedIn:false,
+  setIsLoggedIn:()=>{}
 });
 
 const ContextProvider: React.FC<Props> = ({ children }) => {
-  // const [user, setUser] = useState<User | null >(null);
-  const [user, setUser] = useState<User | null >({ name: "John", email: "test@gmail.com" });
+  const [user, setUser] = useState<User | null >(null);
+  // const [user, setUser] = useState<User | null >({ name: "John", email: "test@gmail.com" });
   const [items, setItems] = useState(() => ITEMS);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Context
@@ -44,6 +49,8 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         setUser,
         items,
         setItems,
+        isLoggedIn,
+        setIsLoggedIn
       }}
     >
       {children}

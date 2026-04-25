@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { useCtx } from "@/context/Context";
 
 const LoginForm = () => {
-  const { setUser } = useCtx();
+  const { setUser,setIsLoggedIn } = useCtx();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +36,7 @@ const LoginForm = () => {
       };
 
       setUser(userData);
-
+      setIsLoggedIn(true)
       toast.success("Welcome back!");
       router.push("/")
     } catch {

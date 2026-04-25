@@ -20,7 +20,7 @@ import { toast } from "sonner";
 import { auth } from "@/lib/firebase";
 
 const NavActions = () => {
-  const { user, setUser } = useCtx();
+  const { user, setUser,setIsLoggedIn } = useCtx();
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
@@ -67,6 +67,7 @@ const NavActions = () => {
                 onClick={async () => {
                   await signOut(auth);
                   setUser(null);
+                  setIsLoggedIn(false);
                   toast.success("Logged out successfully");
                 }}
                 className="cursor-pointer"
