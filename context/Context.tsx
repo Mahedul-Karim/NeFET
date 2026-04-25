@@ -22,7 +22,7 @@ interface ContextType {
   user: User | null | undefined;
   setUser: Dispatch<SetStateAction<User | null | undefined>>;
   items: NftItem[];
-  setItems: Dispatch<SetStateAction<NftItem[]>>;
+  setItems: Dispatch<SetStateAction<any>>;
 }
 
 const Context = createContext<ContextType>({
@@ -33,7 +33,8 @@ const Context = createContext<ContextType>({
 });
 
 const ContextProvider: React.FC<Props> = ({ children }) => {
-  const [user, setUser] = useState<User | null | undefined>(null);
+  // const [user, setUser] = useState<User | null | undefined>(null);
+  const [user, setUser] = useState<User | null | undefined>({ name: "John", email: "test@gmail.com" });
   const [items, setItems] = useState(() => ITEMS);
 
   return (

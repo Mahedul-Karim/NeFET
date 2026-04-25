@@ -12,7 +12,7 @@ const ProductCard = ({ item }: { item: NftItem }) => {
     >
       <div className="aspect-square overflow-hidden bg-muted">
         <Image
-          src={item.image}
+          src={item.image || ""}
           alt={item.title}
           loading="lazy"
           width={768}

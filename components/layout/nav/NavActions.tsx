@@ -17,9 +17,9 @@ import { NAV_LINKS } from "@/lib/data";
 import { usePathname } from "next/navigation";
 
 const NavActions = () => {
-  const { user } = useCtx();
+  const { user  } = useCtx();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <section className="relative">
@@ -27,25 +27,25 @@ const NavActions = () => {
         {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2">
-                <div className="h-6 w-6 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-xs font-bold text-primary-foreground">
+              <Button variant="outline" className="gap-2 border-border-subtle bg-transparent hover:bg-transparent text-primary-text hover:text-primary-text">
+                <div className="h-6 w-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-xs font-bold text-primary-text">
                   {user.name[0]?.toUpperCase()}
                 </div>
                 <span className="max-w-[120px] truncate">{user.name}</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuContent align="end" className="w-56 bg-card">
               <DropdownMenuLabel>
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium">{user.name}</span>
-                  <span className="text-xs text-muted-foreground truncate">
+                  <span className="text-sm font-medium text-primary-text">{user.name}</span>
+                  <span className="text-xs text-muted truncate">
                     {user.email}
                   </span>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href="/" className="cursor-pointer">
+                <Link href="/add-product" className="cursor-pointer">
                   <Plus className="mr-2 h-4 w-4" /> Add Product
                 </Link>
               </DropdownMenuItem>
@@ -62,12 +62,14 @@ const NavActions = () => {
           </DropdownMenu>
         ) : (
           <>
-            <Button variant="ghost" asChild className="text-primary-text hover:bg-transparent hover:text-primary-text">
+            <Button
+              variant="ghost"
+              asChild
+              className="text-primary-text hover:bg-transparent hover:text-primary-text"
+            >
               <Link href="/login">Login</Link>
             </Button>
-            <Button
-              asChild
-            >
+            <Button asChild>
               <Link href="/register">Register</Link>
             </Button>
           </>
@@ -80,11 +82,7 @@ const NavActions = () => {
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          {mobileOpen ? (
-            <X className="size-6"/>
-          ) : (
-            <Menu className="size-6" />
-          )}
+          {mobileOpen ? <X className="size-6" /> : <Menu className="size-6" />}
         </Button>
       </div>
 
