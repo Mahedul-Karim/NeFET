@@ -66,7 +66,7 @@ const Page = () => {
         <h2 className="font-display text-3xl font-bold text-primary-text">Our mission</h2>
         <p className="text-muted leading-relaxed">
           Digital art deserves a marketplace that respects both the work and the
-          wallet behind it. We&apos;re building Voidframe to be the most beloved
+          wallet behind it. We&apos;re building NeFT to be the most beloved
           place to discover, mint, and trade NFTs — without the noise. Whether
           you&apos;re a first-time collector or a seasoned trader, you&apos;ll
           find a clean, performant experience that puts the art front and
