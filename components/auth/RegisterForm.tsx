@@ -1,11 +1,14 @@
 "use client";
 
 import { useState, SubmitEvent } from "react";
-// import { toast } from "sonner";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { auth } from "@/lib/firebase";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
@@ -13,13 +16,26 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter();
+
   const onSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {
-      //   toast.success("Account created!");
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+
+      await updateProfile(userCredential.user, {
+        displayName: name,
+      });
+
+      toast.success("Account created!");
+      router.push("/login");
     } catch {
-      //   toast.error("Could not create account");
+      toast.error("Could not create account");
     } finally {
       setLoading(false);
     }
