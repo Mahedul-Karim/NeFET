@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "@/components/layout/Header";
+import { Toaster } from "@/components/ui/sonner";
 import ContextProvider from "@/context/Context";
 import Footer from "@/components/layout/Footer";
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ContextProvider>
           <Header />
           {children}
+          <Toaster />
           <Footer />
         </ContextProvider>
       </body>

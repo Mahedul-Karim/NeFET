@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, SubmitEvent } from "react";
-// import { toast } from "sonner";
+import {  useState, SubmitEvent } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -48,7 +48,7 @@ const AddItemForm = () => {
     };
 
     setItems((items: any) => [...items, item]);
-    // toast.success("NFT minted to your collection!");
+    toast.success("NFT minted to your collection!");
     // navigate({ to: "/items/manage" });
   };
 
