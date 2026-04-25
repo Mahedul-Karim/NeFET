@@ -1,5 +1,6 @@
 "use client";
 
+import { ITEMS, NftItem } from "@/lib/data";
 import React, {
   createContext,
   Dispatch,
@@ -20,21 +21,28 @@ interface User {
 interface ContextType {
   user: User | null | undefined;
   setUser: Dispatch<SetStateAction<User | null | undefined>>;
+  items: NftItem[];
+  setItems: Dispatch<SetStateAction<NftItem[]>>;
 }
 
 const Context = createContext<ContextType>({
   user: null,
   setUser: () => {},
+  items: [],
+  setItems: () => {},
 });
 
 const ContextProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<User | null | undefined>(null);
+  const [items, setItems] = useState(() => ITEMS);
 
   return (
     <Context
       value={{
         user,
         setUser,
+        items,
+        setItems,
       }}
     >
       {children}

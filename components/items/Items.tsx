@@ -11,13 +11,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CATEGORIES, ITEMS, NftItem } from "@/lib/data";
+import { CATEGORIES } from "@/lib/data";
 import ProductCard from "../products/ProductCard";
+import { useCtx } from "@/context/Context";
 
 type SortKey = "newest" | "price-asc" | "price-desc";
 
 const Items = () => {
-  const [items] = useState<NftItem[]>(() => ITEMS);
+  const { items } = useCtx();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<string>("all");
   const [maxPrice, setMaxPrice] = useState<string>("any");
@@ -49,7 +50,9 @@ const Items = () => {
   return (
     <>
       <div className="mb-8">
-        <h1 className="font-display text-4xl sm:text-5xl font-bold text-primary-text">Explore</h1>
+        <h1 className="font-display text-4xl sm:text-5xl font-bold text-primary-text">
+          Explore
+        </h1>
         <p className="mt-2 text-secondary-text">
           {filtered.length} of {items.length} items in the marketplace
         </p>
