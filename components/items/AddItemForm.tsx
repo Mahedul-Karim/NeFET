@@ -16,9 +16,12 @@ import {
 import { CATEGORIES, type Category } from "@/lib/data";
 import { useCtx } from "@/context/Context";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const AddItemForm = () => {
   const { setItems, user } = useCtx();
+
+  const router = useRouter()
 
   const [title, setTitle] = useState("");
   const [shortDescription, setShortDescription] = useState("");
@@ -45,11 +48,12 @@ const AddItemForm = () => {
         image ||
         "",
       creator: user?.name,
+      createdAt:new Date()
     };
 
     setItems((items: any) => [...items, item]);
     toast.success("NFT minted to your collection!");
-    // navigate({ to: "/items/manage" });
+    router.push("/items")
   };
 
   return (

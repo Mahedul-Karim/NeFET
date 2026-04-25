@@ -22,7 +22,7 @@ const Items = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<string>("all");
   const [maxPrice, setMaxPrice] = useState<string>("any");
-  const [sort, setSort] = useState<SortKey>("newest");
+  const [sort, setSort] = useState<SortKey>("price-asc");
 
   const filtered = useMemo(() => {
     let list = [...items];
@@ -42,8 +42,6 @@ const Items = () => {
     }
     if (sort === "price-asc") list.sort((a, b) => a.price - b.price);
     if (sort === "price-desc") list.sort((a, b) => b.price - a.price);
-    if (sort === "newest")
-      list.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     return list;
   }, [items, search, category, maxPrice, sort]);
 
@@ -98,7 +96,6 @@ const Items = () => {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="newest">Newest</SelectItem>
             <SelectItem value="price-asc">Price: Low → High</SelectItem>
             <SelectItem value="price-desc">Price: High → Low</SelectItem>
           </SelectContent>

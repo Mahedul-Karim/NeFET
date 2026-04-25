@@ -33,8 +33,8 @@ const Context = createContext<ContextType>({
 });
 
 const ContextProvider: React.FC<Props> = ({ children }) => {
-  const [user, setUser] = useState<User | null >(null);
-  // const [user, setUser] = useState<User | null | undefined>({ name: "John", email: "test@gmail.com" });
+  // const [user, setUser] = useState<User | null >(null);
+  const [user, setUser] = useState<User | null >({ name: "John", email: "test@gmail.com" });
   const [items, setItems] = useState(() => ITEMS);
 
   return (

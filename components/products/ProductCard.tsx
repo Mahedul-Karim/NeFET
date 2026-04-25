@@ -11,14 +11,14 @@ const ProductCard = ({ item }: { item: NftItem }) => {
       className="group rounded-2xl border border-border-subtle/20 bg-card overflow-hidden flex flex-col transition-all hover:-translate-y-1  hover:shadow-glow"
     >
       <div className="aspect-square overflow-hidden bg-muted">
-        <Image
-          src={item.image || ""}
+        {item.image && <Image
+          src={item.image}
           alt={item.title}
           loading="lazy"
           width={768}
           height={768}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        />}
       </div>
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2">
