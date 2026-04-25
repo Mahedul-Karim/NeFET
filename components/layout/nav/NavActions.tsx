@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Menu, X, Wallet, Plus, LayoutGrid, LogOut, User } from "lucide-react";
+import { Menu, X, Plus, LayoutGrid, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,10 +14,13 @@ import {
 import { useCtx } from "@/context/Context";
 import Link from "next/link";
 import { NAV_LINKS } from "@/lib/data";
+import { signOut } from "firebase/auth";
 import { usePathname } from "next/navigation";
+import { toast } from "sonner";
+import { auth } from "@/lib/firebase";
 
 const NavActions = () => {
-  const { user  } = useCtx();
+  const { user, setUser } = useCtx();
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
@@ -27,9 +30,12 @@ const NavActions = () => {
         {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2 border-border-subtle bg-transparent hover:bg-transparent text-primary-text hover:text-primary-text">
+              <Button
+                variant="outline"
+                className="gap-2 border-border-subtle bg-transparent hover:bg-transparent text-primary-text hover:text-primary-text"
+              >
                 <div className="h-6 w-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-xs font-bold text-primary-text">
-                  {user.name[0]?.toUpperCase()}
+                  {user?.name && user.name[0]?.toUpperCase()}
                 </div>
                 <span className="max-w-[120px] truncate">{user.name}</span>
               </Button>
@@ -37,7 +43,9 @@ const NavActions = () => {
             <DropdownMenuContent align="end" className="w-56 bg-card">
               <DropdownMenuLabel>
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-primary-text">{user.name}</span>
+                  <span className="text-sm font-medium text-primary-text">
+                    {user.name}
+                  </span>
                   <span className="text-xs text-muted truncate">
                     {user.email}
                   </span>
@@ -55,7 +63,14 @@ const NavActions = () => {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => {}} className="cursor-pointer">
+              <DropdownMenuItem
+                onClick={async () => {
+                  await signOut(auth);
+                  setUser(null);
+                  toast.success("Logged out successfully");
+                }}
+                className="cursor-pointer"
+              >
                 <LogOut className="mr-2 h-4 w-4" /> Log out
               </DropdownMenuItem>
             </DropdownMenuContent>
